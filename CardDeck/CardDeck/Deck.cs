@@ -45,7 +45,6 @@ namespace CardDeck
                 cards.Add(cardToAdd);
                 return true;
             }
-
             return false;            
         }
 
@@ -95,12 +94,24 @@ namespace CardDeck
         }
 
         /// <summary>
-        /// Randomizes the order of the 52 cards contained within the Deck.
+        /// Implements a Fisher-Yates Shuffle to randomize the order of the 52 cards contained within the Deck.
         /// </summary>
         /// <param name="deckToShuffle">A Deck</param>
         /// <returns>A Deck with cards in a randomized order.</returns>
         public static Deck Shuffle(Deck deckToShuffle)
         {
+           
+           Random randomizer = new Random();
+
+           for (int i = 0; i < deckToShuffle.cards.Count; i++)
+           {
+              int targetIndex = i + (int)(randomizer.NextDouble() * (deckToShuffle.cards.Count - i));
+              Card tempCard = deckToShuffle.cards.ElementAt(targetIndex);
+              deckToShuffle.cards.RemoveAt(targetIndex);
+              deckToShuffle.cards.Insert(targetIndex, deckToShuffle.cards.ElementAt(i));
+              deckToShuffle.cards.RemoveAt(i);
+              deckToShuffle.cards.Insert(i, tempCard);
+           }
             return deckToShuffle;
         }
     }
