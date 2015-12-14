@@ -14,6 +14,11 @@ namespace CardDeck
     {
         public IList<Card> cards;
         
+        /// <summary>
+        /// Class constructor. Creates a Deck containing 52 instances of Card,
+        /// each with a unique combination of Value and Suit, with restraints of
+        /// 1-13 and H,D,S,C.
+        /// </summary>
         public Deck()
         {
             int suitSize = 13;
@@ -27,6 +32,12 @@ namespace CardDeck
             }
         }
 
+        /// <summary>
+        /// Adds a new Card to the Deck if the Deck does not already contain a Card
+        /// with the same Value and Suit.
+        /// </summary>
+        /// <param name="cardToAdd">A Card to add to the Deck.</param>
+        /// <returns>True if the new Card was unique and added to the deck, otherwise False.</returns>
         public bool AddCard(Card cardToAdd)
         {
             if (!cards.Contains(cardToAdd))
@@ -38,6 +49,11 @@ namespace CardDeck
             return false;            
         }
 
+        /// <summary>
+        /// Removes an existing Card from the Deck.
+        /// </summary>
+        /// <param name="cardToRemove">A Card to search the Deck for and remove if found.</param>
+        /// <returns>True if found and removed, otherwise False.</returns>
         public bool RemoveCard(Card cardToRemove)
         {
             if (cards.Contains(cardToRemove))
@@ -45,15 +61,18 @@ namespace CardDeck
                 cards.Remove(cardToRemove);
                 return true;
             }
-
             return false;
         }
 
-
+        /// <summary>
+        /// Overload to sort the current deck. Passes 'this' to AscendingSort(Deck).
+        /// </summary>
+        /// <returns>The results of AscendingSort(this).</returns>
         public Deck AscendingSort()
         {
             return AscendingSort(this);
         }
+
         /// <summary>
         /// Returns a brand new Deck to replace the passed in Deck. (New Decks are created with their Cards in ascending order.)
         /// </summary>
@@ -66,14 +85,20 @@ namespace CardDeck
         }
 
         /// <summary>
-        /// 2.	Write a method, function, or procedure that randomly shuffles a standard deck of 52 playing cards.
+        /// Overload to shuffle the current deck. Passes 'this' to Shuffle(Deck).
         /// </summary>
-        /// <param name="deckToShuffle"></param>
+        /// <returns>The results of Shuffle(this).</returns>
         public Deck Shuffle()
         {
             //TODO: Unit test to show randomized results.
             return Shuffle(this);
         }
+
+        /// <summary>
+        /// Randomizes the order of the 52 cards contained within the Deck.
+        /// </summary>
+        /// <param name="deckToShuffle">A Deck</param>
+        /// <returns>A Deck with cards in a randomized order.</returns>
         public static Deck Shuffle(Deck deckToShuffle)
         {
             return deckToShuffle;

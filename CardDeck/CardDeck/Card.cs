@@ -12,6 +12,11 @@ namespace CardDeck
        char suit;
        public static IList<char> allSuits = new List<char> { 'D', 'S', 'C', 'H' };
       
+        /// <summary>
+        /// Class constructor. Creates a new Card with values for Value and Suit.
+        /// </summary>
+        /// <param name="newValue">Integer value of the Card between 1 and 13.</param>
+        /// <param name="newSuit">Char representation of the Card Suit, one of A,S,H,C.</param>
        public Card(int newValue, char newSuit)
        {
            this.SetValue(newValue);
@@ -23,15 +28,15 @@ namespace CardDeck
         /// </summary>
         /// <param name="valueToSet">An int between 1 and 13, inclusive.</param>
         /// <returns>True if valid input, otherwise False.</returns>
-       public bool SetValue(int valueToSet)
-        {
+        public bool SetValue(int valueToSet)
+         {
             if (valueToSet <= 13 && valueToSet >= 1)
             {
                 value = valueToSet;
                 return true;
             }
             return false;
-        }
+         }
 
         /// <summary>
         /// 
