@@ -69,9 +69,9 @@ namespace CardDeck2010
         /// Overload to sort the current deck. Passes 'this' to AscendingSort(Deck).
         /// </summary>
         /// <returns>The results of AscendingSort(this).</returns>
-        public Deck AscendingSort()
+        public void AscendingSort()
         {
-            return AscendingSort(this);
+            this.cards = AscendingSort(this).cards;
         }
 
         /// <summary>
@@ -81,7 +81,6 @@ namespace CardDeck2010
         /// <returns>A deck with cards arranged in Ascending order (CDHS, 1-13).</returns>
         public static Deck AscendingSort(Deck deckToSort)
         {
-            //TODO: Unit test to ensure multiple random decks passed in all exit in the same order.
             return new Deck();
         }
 
@@ -91,9 +90,7 @@ namespace CardDeck2010
         /// <returns>The results of Shuffle(this).</returns>
         public void Shuffle()
         {
-            //TODO: Unit test to show randomized results.
             this.cards = Shuffle(this).cards;
-            return;
         }
 
         /// <summary>

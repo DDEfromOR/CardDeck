@@ -32,17 +32,41 @@ namespace CardDeck2010
           * the sort method simply tosses out the existing cards and replaces with 
           * with a nice, new, ordered pack.
           */
+         Deck myDeck1 = new Deck();
+         Deck myDeck2 = new Deck();
+         myDeck2.Shuffle();
+         Assert.AreNotEqual(myDeck1.ToString(), myDeck2.ToString());
+         myDeck2.AscendingSort();
+         Assert.AreEqual(myDeck1.ToString(), myDeck2.ToString());
          
       }
 
       [Test]
-      public void DeckShuffleTest()
+      public void BasicDeckShuffleTest()
       {
+         /*
+          * Bare minimum test for Shuffle, which tests to make sure a shuffled
+          * deck is not in the same order as a fresh deck.
+          */
          Deck myDeck1 = new Deck();
          Deck myDeck2 = new Deck();
          myDeck2.Shuffle();
-         Console.Out.WriteLine(myDeck2.ToString());
-         Assert.AreNotEqual(myDeck1, myDeck2);
+         Assert.AreNotEqual(myDeck1.ToString(), myDeck2.ToString());
+      }
+
+      [Test]
+      public void MultipleDeckShuffleTest()
+      {
+         /*
+          * A little bit better test for Shuffle, which tests to make sure 
+          * multiple shuffled decks do not end up in the same order. (Which,
+          * of course, is a possible outcome, but should be extremely unlikely!)
+          */
+         Deck myDeck1 = new Deck();
+         Deck myDeck2 = new Deck();
+         myDeck1.Shuffle();
+         myDeck2.Shuffle();
+         Assert.AreNotEqual(myDeck1.ToString(), myDeck2.ToString());
       }
     }
 }
