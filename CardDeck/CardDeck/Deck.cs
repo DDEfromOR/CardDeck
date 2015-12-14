@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 namespace CardDeck
 {
     /// <summary>
-    /// A Deck contains a set number of Cards, with no duplicates.
+    /// A Deck contains a set of 52 Cards, with no duplicates.
+    /// Must be able to be sorted and shuffled.
     /// </summary>
     class Deck
     {
@@ -24,6 +25,7 @@ namespace CardDeck
         }
         public static Deck AscendingSort(Deck deckToSort)
         {
+            //TODO: Unit test to ensure multiple random decks passed in all exit in the same order.
             return deckToSort;
         }
 
@@ -33,6 +35,7 @@ namespace CardDeck
         /// <param name="deckToShuffle"></param>
         public Deck Shuffle()
         {
+            //TODO: Unit test to show randomized results.
             return Shuffle(this);
         }
         public static Deck Shuffle(Deck deckToShuffle)
