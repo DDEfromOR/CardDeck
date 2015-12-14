@@ -12,13 +12,41 @@ namespace CardDeck
     /// </summary>
     class Deck
     {
-        static Deck()
+        public IList<Card> cards;
+        
+        public Deck()
         {
-            //Setup a single deck of 52 unique cards.
-            foreach (char suite in Card.allSuits)
+            int suitSize = 13;
+            foreach (char suit in Card.allSuits)
             {
-
+                for (int i = 1; i < suitSize; i++)
+                {
+                    Card newCard = new Card(i, suit);
+                    this.AddCard(newCard);
+                }
             }
+        }
+
+        public bool AddCard(Card cardToAdd)
+        {
+            if (!cards.Contains(cardToAdd))
+            {
+                cards.Add(cardToAdd);
+                return true;
+            }
+
+            return false;            
+        }
+
+        public bool RemoveCard(Card cardToRemove)
+        {
+            if (cards.Contains(cardToRemove))
+            {
+                cards.Remove(cardToRemove);
+                return true;
+            }
+
+            return false;
         }
 
         /// <summary>

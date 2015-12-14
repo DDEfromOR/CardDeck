@@ -11,6 +11,12 @@ namespace CardDeck
        int value;
        char suit;
        public static IList<char> allSuits = new List<char> { 'D', 'S', 'C', 'H' };
+      
+       public Card(int newValue, char newSuit)
+       {
+           this.SetValue(newValue);
+           this.SetSuit(newSuit);
+       }
 
         /// <summary>
         /// Sets the numeric value of the current card.
