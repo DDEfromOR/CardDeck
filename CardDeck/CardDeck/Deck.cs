@@ -12,6 +12,14 @@ namespace CardDeck
     /// </summary>
     class Deck
     {
+        static Deck()
+        {
+            //Setup a single deck of 52 unique cards.
+            foreach (char suite in Card.allSuits)
+            {
+
+            }
+        }
 
         /// <summary>
         /// Write a method, function, or procedure that sorts a standard deck of 52 playing cards in ascending order.
