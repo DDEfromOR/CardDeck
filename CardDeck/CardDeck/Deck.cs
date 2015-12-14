@@ -49,20 +49,20 @@ namespace CardDeck
             return false;
         }
 
-        /// <summary>
-        /// Write a method, function, or procedure that sorts a standard deck of 52 playing cards in ascending order.
-        /// You are free to determine what the term “ascending order” means for a deck of cards, but be ready to discuss your choice during the interview.
-        /// INPUT: Standard Deck of 52 Cards.
-        /// OUTPUT: Sorted Deck of 52 Cards, in Ascending Order.
-        /// </summary>
+
         public Deck AscendingSort()
         {
             return AscendingSort(this);
         }
+        /// <summary>
+        /// Returns a brand new Deck to replace the passed in Deck. (New Decks are created with their Cards in ascending order.)
+        /// </summary>
+        /// <param name="deckToSort">A deck to replace with a new, sorted deck.</param>
+        /// <returns>A deck with cards arranged in Ascending order (DSCH, 1-13).</returns>
         public static Deck AscendingSort(Deck deckToSort)
         {
             //TODO: Unit test to ensure multiple random decks passed in all exit in the same order.
-            return deckToSort;
+            return new Deck();
         }
 
         /// <summary>
