@@ -78,7 +78,7 @@ namespace CardDeck2010
         /// Returns a brand new Deck to replace the passed in Deck. (New Decks are created with their Cards in ascending order.)
         /// </summary>
         /// <param name="deckToSort">A deck to replace with a new, sorted deck.</param>
-        /// <returns>A deck with cards arranged in Ascending order (DSCH, 1-13).</returns>
+        /// <returns>A deck with cards arranged in Ascending order (CDHS, 1-13).</returns>
         public static Deck AscendingSort(Deck deckToSort)
         {
             //TODO: Unit test to ensure multiple random decks passed in all exit in the same order.
@@ -89,10 +89,11 @@ namespace CardDeck2010
         /// Overload to shuffle the current deck. Passes 'this' to Shuffle(Deck).
         /// </summary>
         /// <returns>The results of Shuffle(this).</returns>
-        public Deck Shuffle()
+        public void Shuffle()
         {
             //TODO: Unit test to show randomized results.
-            return Shuffle(this);
+            this.cards = Shuffle(this).cards;
+            return;
         }
 
         /// <summary>
@@ -103,17 +104,20 @@ namespace CardDeck2010
         public static Deck Shuffle(Deck deckToShuffle)
         {
            Random randomizer = new Random();
+           Card[] arrayOfCards = deckToShuffle.cards.ToArray();
+           int length = arrayOfCards.Length;
 
-           for (int i = 0; i < deckToShuffle.cards.Count; i++)
+           for (int i = 0; i < length; i++)
            {
-              int targetIndex = i + (int)(randomizer.NextDouble() * (deckToShuffle.cards.Count - i));
-              Card tempCard = deckToShuffle.cards.ElementAt(targetIndex);
-              deckToShuffle.cards.RemoveAt(targetIndex);
-              deckToShuffle.cards.Insert(targetIndex, deckToShuffle.cards.ElementAt(i));
-              deckToShuffle.cards.RemoveAt(i);
-              deckToShuffle.cards.Insert(i, tempCard);
+              int target = i + (int) (randomizer.NextDouble()*(length - i));
+              Card temp = arrayOfCards[target];
+              arrayOfCards[target] = arrayOfCards[i];
+              arrayOfCards[i] = temp;
            }
-            return deckToShuffle;
+
+           deckToShuffle.cards = arrayOfCards.ToList();
+           return deckToShuffle;
+
         }
 
        /// <summary>
@@ -122,18 +126,8 @@ namespace CardDeck2010
        /// <returns>String of cards formatted as "Suit:Value Suit:Value" for deck.</returns>
        public new string ToString()
        {
-          if(this.cards == null)
-          {
-             return "The deck is empty!";
-          }
-
-          string deckAsString = "";
-          foreach (var card in this.cards)
-          {
-             deckAsString = deckAsString + ' ' + card.ToString();
-          }
-          return deckAsString;
-          //return this.cards.Aggregate<Card, string>("Deck: ", (current, someCard) => current + someCard.ToString() + ' ');
+          return this.cards == null ? "The deck is empty!" : this.cards.Aggregate("", (current, card) => current +
+             ' ' + card.ToString());
        }
     }
 }

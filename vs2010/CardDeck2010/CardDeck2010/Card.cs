@@ -6,7 +6,7 @@ namespace CardDeck2010
     {
        int value;
        char suit;
-       public static IList<char> allSuits = new List<char> { 'D', 'S', 'C', 'H' };
+       public static IList<char> allSuits = new List<char> { 'C', 'D', 'H', 'S' };
       
         /// <summary>
         /// Class constructor. Creates a new Card with values for Value and Suit.
