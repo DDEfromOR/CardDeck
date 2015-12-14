@@ -70,5 +70,14 @@ namespace CardDeck
         {
             return suit;
         }
+
+       /// <summary>
+       /// Override for default ToString() method.
+       /// </summary>
+       /// <returns>Suit:Value</returns>
+       public string ToString()
+       {
+          return GetSuit() + ':' + GetValue().ToString();
+       }
     }
 }

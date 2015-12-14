@@ -114,5 +114,17 @@ namespace CardDeck
            }
             return deckToShuffle;
         }
+
+       public string ToString()
+       {
+          string deckAsText = null;
+
+          foreach (Card someCard in this.cards)
+	         {
+              deckAsText = deckAsText + someCard.ToString() + ' ';	 
+	         }
+
+          return deckAsText;
+       }
     }
 }
