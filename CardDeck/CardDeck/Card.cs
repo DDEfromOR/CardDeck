@@ -39,7 +39,7 @@ namespace CardDeck
          }
 
         /// <summary>
-        /// 
+        /// Getter for card value.
         /// </summary>
         /// <returns>The numeric value of the card.</returns>
        public int GetValue()
