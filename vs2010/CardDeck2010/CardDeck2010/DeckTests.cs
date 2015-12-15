@@ -67,5 +67,38 @@ namespace CardDeck2010
          myDeck2.Shuffle();
          Assert.AreNotEqual(myDeck1.ToString(), myDeck2.ToString());
       }
+
+      [Test]
+      public void StaticShuffleTest()
+      {
+         /* 
+          * The Shuffle method of Deck is static, so explicitly testing
+          * it functions properly when used via a static call.
+          */
+         Deck myDeck1 = new Deck();
+         Deck myDeck2 = new Deck();
+         Assert.AreEqual(myDeck1.ToString(), myDeck2.ToString());
+
+         myDeck1 = Deck.Shuffle(myDeck1);
+         Assert.AreNotEqual(myDeck1.ToString(), myDeck2.ToString());
+      }
+
+      [Test]
+      public void StaticSortTest()
+      {
+         /* 
+          * The sort method of Deck is static, so explicitly testing
+          * it functions properly when used via a static call.
+          */
+         Deck myDeck1 = new Deck();
+         Deck myDeck2 = new Deck();
+         Assert.AreEqual(myDeck1.ToString(), myDeck2.ToString());
+
+         myDeck1 = Deck.Shuffle(myDeck1);
+         Assert.AreNotEqual(myDeck1.ToString(), myDeck2.ToString());
+
+         myDeck1 = Deck.AscendingSort(myDeck1);
+         Assert.AreEqual(myDeck1.ToString(), myDeck2.ToString());
+      }
     }
 }

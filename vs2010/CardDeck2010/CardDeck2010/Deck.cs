@@ -27,7 +27,7 @@ namespace CardDeck2010
        /// <summary>
        /// Initializes the set of Cards to contain a typical set of 52 suit/value combinations.
        /// </summary>
-       public void SetupCards()
+       private void SetupCards()
        {
            const int suitSize = 13;
            foreach (char suit in Card.allSuits)
@@ -41,34 +41,35 @@ namespace CardDeck2010
         }
 
        /// <summary>
-        /// Adds a new Card to the Deck if the Deck does not already contain a Card
-        /// with the same Value and Suit.
-        /// </summary>
-        /// <param name="cardToAdd">A Card to add to the Deck.</param>
-        /// <returns>True if the new Card was unique and added to the deck, otherwise False.</returns>
-        public bool AddCard(Card cardToAdd)
+       /// Adds a new Card to the Deck if the Deck does not already contain a Card
+       /// with the same Value and Suit.
+       /// </summary>
+       /// <param name="cardToAdd">A Card to add to the Deck.</param>
+       /// <returns>True if the new Card was unique and added to the deck, otherwise False.</returns>
+       private void AddCard(Card cardToAdd)
        {
           try
           {
              if (cards == null || cards.Contains(cardToAdd))
              {
-                return false;
+                return;
              }
              cards.Add(cardToAdd);
-             return true;
+             return;
           }
           catch (Exception)
           {
-             return false;
+             return;
           }
        }
 
        /// <summary>
-        /// Removes an existing Card from the Deck.
+        /// Removes an existing Card from the Deck. This has no current use but seems like
+        /// it would be a necessary function if the deck were to be used to deal cards out of.
         /// </summary>
         /// <param name="cardToRemove">A Card to search the Deck for and remove if found.</param>
         /// <returns>True if found and removed, otherwise False.</returns>
-        public bool RemoveCard(Card cardToRemove)
+        private bool RemoveCard(Card cardToRemove)
         {
            if (!cards.Contains(cardToRemove)) return false;
            
