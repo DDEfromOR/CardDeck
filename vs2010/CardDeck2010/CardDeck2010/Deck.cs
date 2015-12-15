@@ -91,7 +91,18 @@ namespace CardDeck2010
         /// <param name="deckToSort">A deck to replace with a new, sorted deck.</param>
         /// <returns>A deck with cards arranged in Ascending order (CDHS, 1-13).</returns>
         public static Deck AscendingSort(Deck deckToSort)
-        {
+        { 
+           /*
+            * This is a tad bit cheecky, but for the current
+            * implementation and requirements a sorted Deck will 
+            * be identical to a freshly constructed deck.
+            * 
+            * This may need a re-work to support classes derived
+            * from this Deck class, but it would be difficult to 
+            * implement an algorithm that would account for all
+            * possible derivations without knowledge of them
+            * beforehand.
+          */ 
             return new Deck();
         }
 
