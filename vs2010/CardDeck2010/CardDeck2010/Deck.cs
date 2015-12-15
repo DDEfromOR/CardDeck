@@ -82,7 +82,7 @@ namespace CardDeck2010
         /// <returns>The results of AscendingSort(this).</returns>
         public void AscendingSort()
         {
-            this.cards = AscendingSort(this).cards;
+            cards = AscendingSort(this).cards;
         }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace CardDeck2010
         /// <returns>The results of Shuffle(this).</returns>
         public void Shuffle()
         {
-            this.cards = Shuffle(this).cards;
+            cards = Shuffle(this).cards;
         }
 
         /// <summary>
@@ -157,7 +157,7 @@ namespace CardDeck2010
        /// or 'The deck is empty!' in the case of an empty deck.</returns>
        public new string ToString()
        {
-          return this.cards == null ? "The deck is empty!" : this.cards.Aggregate("", (current, card) => current +
+          return cards == null ? "The deck is empty!" : cards.Aggregate("", (current, card) => current +
              ' ' + card.ToString());
        }
     }

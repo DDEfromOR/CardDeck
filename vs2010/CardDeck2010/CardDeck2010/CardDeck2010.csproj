@@ -52,7 +52,6 @@
     <Compile Include="CardTests.cs" />
     <Compile Include="Deck.cs" />
     <Compile Include="DeckTests.cs" />
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

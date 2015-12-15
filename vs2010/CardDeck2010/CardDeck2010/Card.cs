@@ -17,8 +17,8 @@ namespace CardDeck2010
         /// <param name="newSuit">Char representation of the Card Suit, one of A,S,H,C.</param>
        public Card(int newValue, char newSuit)
        {
-           if(!this.SetValue(newValue)) throw (new Exception("Invalid card value!"));
-           if (!this.SetSuit(newSuit)) throw (new Exception("Invalid card suit!"));
+           if(!SetValue(newValue)) throw (new Exception("Invalid card value!"));
+           if(!SetSuit(newSuit)) throw (new Exception("Invalid card suit!"));
        }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace CardDeck2010
        /// <returns>Suit:Value</returns>
        public new string ToString()
        {
-          return '[' + GetSuit().ToString() + ':' + GetValue().ToString() + ']';
+          return '[' + GetSuit().ToString() + ':' + GetValue() + ']';
        }
     }
 }
