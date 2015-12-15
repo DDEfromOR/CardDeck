@@ -26,7 +26,7 @@ namespace CardDeck2010
         /// </summary>
         /// <param name="valueToSet">An int between 1 and 13, inclusive.</param>
         /// <returns>True if valid input, otherwise False.</returns>
-        public bool SetValue(int valueToSet)
+        private bool SetValue(int valueToSet)
          {
            if (valueToSet > 13 || valueToSet < 1) return false;
            
@@ -48,7 +48,7 @@ namespace CardDeck2010
         /// </summary>
         /// <param name="suitToSet">char representation of the suit, H, S, C, D</param>
         /// <returns>True for valid suits, otherwise False.</returns>
-       public bool SetSuit(char suitToSet)
+       private bool SetSuit(char suitToSet)
         {
            if (!allSuits.Contains(suitToSet)) return false;
        

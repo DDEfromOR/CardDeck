@@ -38,7 +38,6 @@ namespace CardDeck2010
          Assert.AreNotEqual(myDeck1.ToString(), myDeck2.ToString());
          myDeck2.AscendingSort();
          Assert.AreEqual(myDeck1.ToString(), myDeck2.ToString());
-         
       }
 
       [Test]
