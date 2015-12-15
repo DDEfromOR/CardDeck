@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 
 namespace CardDeck2010
 {
@@ -94,19 +95,18 @@ namespace CardDeck2010
         }
 
         /// <summary>
-        /// Implements a Fisher-Yates Shuffle to randomize the order of the 52 cards contained within the Deck.
+        /// Implements a Fisher-Yates Shuffle to "randomize" the order of the 52 cards contained within the Deck.
         /// </summary>
         /// <param name="deckToShuffle">A Deck</param>
         /// <returns>A Deck with cards in a randomized order.</returns>
         public static Deck Shuffle(Deck deckToShuffle)
         {
-           Random randomizer = new Random();
            Card[] arrayOfCards = deckToShuffle.cards.ToArray();
            int length = arrayOfCards.Length;
 
            for (int i = 0; i < length; i++)
            {
-              int target = i + (int) (randomizer.NextDouble()*(length - i));
+              int target = i + (int) (GetRandomPercent() * (length - i));
               Card temp = arrayOfCards[target];
               arrayOfCards[target] = arrayOfCards[i];
               arrayOfCards[i] = temp;
@@ -116,6 +116,19 @@ namespace CardDeck2010
            return deckToShuffle;
 
         }
+
+       /// <summary>
+       /// Uses CryptoServiceProvider to supply a random value between 0 and 1.
+       /// </summary>
+       /// <returns>A Double with value between 0 and 1.</returns>
+       private static double GetRandomPercent()
+       {
+          RNGCryptoServiceProvider csp = new RNGCryptoServiceProvider();
+          byte[] randomInt = new byte[1];
+          csp.GetBytes(randomInt);
+          
+          return randomInt[0] % 1;
+       }
 
        /// <summary>
        /// Hides default ToString to add some customization to output.
