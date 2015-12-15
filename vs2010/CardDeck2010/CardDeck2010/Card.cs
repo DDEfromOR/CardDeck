@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace CardDeck2010
 {    
@@ -10,13 +11,14 @@ namespace CardDeck2010
       
         /// <summary>
         /// Class constructor. Creates a new Card with values for Value and Suit.
+        /// Throws exceptions on invalid Value or Suit.
         /// </summary>
         /// <param name="newValue">Integer value of the Card between 1 and 13.</param>
         /// <param name="newSuit">Char representation of the Card Suit, one of A,S,H,C.</param>
        public Card(int newValue, char newSuit)
        {
-           this.SetValue(newValue);
-           this.SetSuit(newSuit);
+           if(!this.SetValue(newValue)) throw (new Exception("Invalid card value!"));
+           if (!this.SetSuit(newSuit)) throw (new Exception("Invalid card suit!"));
        }
 
         /// <summary>
