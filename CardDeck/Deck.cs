@@ -45,40 +45,28 @@ namespace CardDeck2010
       /// with the same Value and Suit.
       /// </summary>
       /// <param name="cardToAdd">A Card to add to the Deck.</param>
-      /// <returns>True if the new Card was unique and added to the deck, otherwise False.</returns>
       private void AddCard(Card cardToAdd)
       {
-         try
-         {
-            if (cards == null || cards.Contains(cardToAdd))
-            {
-               return;
-            }
-            cards.Add(cardToAdd);
-            return;
-         }
-         catch (Exception)
+         if (cards == null || ContainsCard(cardToAdd))
          {
             return;
          }
+         cards.Add(cardToAdd);
       }
 
       /// <summary>
-      /// Removes the first occurence of a specific Card from the Deck. This currently is used to match up the
-      /// newly created deck with the passed in deck, should the passed in deck be missing
-      /// cards. It also provides some future support for a dealing mechanism. 
+      /// Removes the first occurence of a specific Card from the Deck. 
+      /// It also provides some future support for a dealing mechanism. 
       /// Exposed for testability. 
       /// </summary>
       /// <param name="cardToRemove">A Card to search the Deck for and remove if found.</param>
       public void RemoveCard(Card cardToRemove)
       {
-         foreach (var card in
-            cards.Where(card => card.GetValue() == cardToRemove.GetValue() && card.GetSuit() == cardToRemove.GetSuit()))
+         foreach (var card in cards.Where(card => card.Compare(cardToRemove)))
          {
             cards.Remove(card);
             return;
          }
-
       }
 
       /// <summary>
