@@ -65,6 +65,29 @@ namespace CardDeck2010
             return suit;
         }
 
+
+       /// <summary>
+       /// Overload for static Compare that uses one passed in card
+       /// and the current card.
+       /// </summary>
+       /// <param name="cardToCompare"></param>
+       /// <returns></returns>
+       public bool Compare(Card cardToCompare)
+       {
+          return Compare(cardToCompare, this);
+       }
+
+       /// <summary>
+       /// Checks to see if two cards are equivalent. 
+       /// </summary>
+       /// <param name="firstCard">A card to compare.</param>
+       /// <param name="secondCard">The card to compare to.</param>
+       /// <returns>true if the two cards are equivalent, otherwise false.</returns>
+       public static bool Compare(Card firstCard, Card secondCard)
+       {
+          return firstCard.GetValue() == secondCard.GetValue() && firstCard.GetSuit() == secondCard.GetSuit();
+       }
+
        /// <summary>
        /// Hides default ToString() method.
        /// </summary>

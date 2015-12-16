@@ -18,6 +18,22 @@ namespace CardDeck2010
       }
 
       [Test]
+      public void CardCompare()
+      {
+         /*
+          * Tests the card compare function against manually created cards.
+          */ 
+         Card twoOfHearts = new Card(2, 'H');
+         Card anotherTwoOfHearts = new Card(2, 'H');
+         Card threeOfHearts = new Card(3, 'H');
+         Card twoOfClubs = new Card(2, 'C');
+
+         Assert.True(twoOfHearts.Compare(anotherTwoOfHearts));
+         Assert.False(twoOfHearts.Compare(twoOfClubs));
+         Assert.False(twoOfHearts.Compare(threeOfHearts));
+      }
+
+      [Test]
       public void CardConstructorSentBadSuit()
       {
          /*

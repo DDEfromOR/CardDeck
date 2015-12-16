@@ -30,7 +30,7 @@ namespace CardDeck2010
           * new decks are greated with cards in this order by default, so instead of 
           * doing the work of sorting a shuffled deck back to its original state,
           * the sort method simply tosses out the existing cards and replaces with 
-          * with a nice, new, ordered pack.
+          * with a nice, new, ordered pack unless the sorting deck is missing cards.
           */
          Deck myDeck1 = new Deck();
          Deck myDeck2 = new Deck();
@@ -38,6 +38,56 @@ namespace CardDeck2010
          Assert.AreNotEqual(myDeck1.ToString(), myDeck2.ToString());
          myDeck2.AscendingSort();
          Assert.AreEqual(myDeck1.ToString(), myDeck2.ToString());
+      }
+
+      [Test]
+      public void ContainsCard()
+      {
+         /*
+          * Confirms cards can be found in a fresh deck and
+          * properly cannot be found after being removed. 
+          */ 
+         Deck myDeck = new Deck();
+         Card twoOfHearts = new Card(2, 'H');
+         Card threeOfHearts = new Card(3, 'H');
+         Card twoOfClubs = new Card(2, 'C');
+
+         Assert.True(myDeck.ContainsCard(twoOfHearts));
+         Assert.True(myDeck.ContainsCard(threeOfHearts));
+         Assert.True(myDeck.ContainsCard(twoOfClubs));
+
+         myDeck.RemoveCard(twoOfHearts);
+         myDeck.RemoveCard(threeOfHearts);
+
+         Assert.False(myDeck.ContainsCard(twoOfHearts));
+         Assert.False(myDeck.ContainsCard(threeOfHearts));
+         Assert.True(myDeck.ContainsCard(twoOfClubs));
+      }
+
+      [Test]
+      public void SortDoesNotRestoreMissingCards()
+      {
+         /*
+          * Confirms sorting a deck with missing cards doesn't
+          * shuffle the missing cards back into the deck, or add blank
+          * cards in the places they would have occupied. 
+          */ 
+         Deck myDeck1 = new Deck();
+         Deck myDeck2 = new Deck();
+         Assert.AreEqual(myDeck1.ToString().Length, myDeck2.ToString().Length);
+
+         Card fourOfDiamonds = new Card(4, 'D');
+         Card threeOfSpades = new Card(3, 'S');
+         Card twoOfHearts = new Card(2, 'H');
+
+         myDeck1.RemoveCard(fourOfDiamonds);
+         myDeck1.RemoveCard(threeOfSpades);
+         myDeck1.RemoveCard(twoOfHearts);
+
+         Assert.False(myDeck1.ContainsCard(fourOfDiamonds));
+         Assert.False(myDeck1.ContainsCard(threeOfSpades));
+         Assert.False(myDeck1.ContainsCard(twoOfHearts));
+         Assert.Greater(myDeck2.ToString().Length, myDeck1.ToString().Length);
       }
 
       [Test]

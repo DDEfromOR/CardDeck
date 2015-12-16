@@ -64,17 +64,21 @@ namespace CardDeck2010
        }
 
        /// <summary>
-        /// Removes an existing Card from the Deck. This has no current use but seems like
-        /// it would be a necessary function if the deck were to be used to deal cards out of.
-        /// </summary>
-        /// <param name="cardToRemove">A Card to search the Deck for and remove if found.</param>
-        /// <returns>True if found and removed, otherwise False.</returns>
-        private bool RemoveCard(Card cardToRemove)
+       /// Removes the first occurence of a specific Card from the Deck. This currently is used to match up the
+       /// newly created deck with the passed in deck, should the passed in deck be missing
+       /// cards. It also provides some future support for a dealing mechanism. 
+       /// Exposed for testability. 
+       /// </summary>
+       /// <param name="cardToRemove">A Card to search the Deck for and remove if found.</param>
+       public void RemoveCard(Card cardToRemove)
         {
-           if (!cards.Contains(cardToRemove)) return false;
-           
-           cards.Remove(cardToRemove);
-           return true;
+          foreach (var card in
+             cards.Where(card => card.GetValue() == cardToRemove.GetValue() && card.GetSuit() == cardToRemove.GetSuit()))
+          {
+             cards.Remove(card);
+             return;
+          }
+          
         }
 
         /// <summary>
@@ -83,7 +87,7 @@ namespace CardDeck2010
         /// <returns>The results of AscendingSort(this).</returns>
         public void AscendingSort()
         {
-            AscendingSort(this);
+           cards = AscendingSort(this).cards;
         }
 
         /// <summary>
@@ -105,19 +109,44 @@ namespace CardDeck2010
             * possible derivations without knowledge of them
             * beforehand.
           */ 
-            Deck freshDeck = new Deck();
+           Deck masterDeck = new Deck();
 
-            foreach (Card myCard in freshDeck.cards)
-            {
-                if (!deckToSort.cards.Contains(myCard))
-                {
-                    freshDeck.RemoveCard(myCard);
-                }
-            }
-            return freshDeck;
+           if (deckToSort.cards.Count == masterDeck.cards.Count)
+           {
+              return masterDeck;
+           }
+
+           Deck freshDeck = new Deck();
+
+           foreach (Card aCard in masterDeck.cards.Where(aCard => !deckToSort.ContainsCard(aCard)))
+           {
+              freshDeck.RemoveCard(aCard);
+           }
+           return freshDeck;
         }
 
-        /// <summary>
+       /// <summary>
+       /// Overload to search the current deck for a card.
+       /// </summary>
+       /// <param name="cardToFind">A card to find in the current deck.</param>
+       /// <returns>True if the card is found in the deck, otherwise false.</returns>
+       public bool ContainsCard(Card cardToFind)
+       {
+          return ContainsCard(cardToFind, this);
+       }
+
+       /// <summary>
+       /// Checks to see if a specific card is in the deck.
+       /// </summary>
+       /// <param name="cardToFind">The card to look for.</param>
+       /// <param name="deckToSearch">The deck to look through.</param>
+       /// <returns>True if the card is found in the deck, otherwise false.</returns>
+       public static bool ContainsCard(Card cardToFind, Deck deckToSearch)
+       {
+          return deckToSearch.cards.Any(card => card.Compare(cardToFind));
+       }
+
+       /// <summary>
         /// Overload to shuffle the current deck. Passes 'this' to Shuffle(Deck).
         /// </summary>
         /// <returns>The results of Shuffle(this).</returns>
