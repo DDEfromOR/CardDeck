@@ -86,7 +86,7 @@ namespace CardDeck2010
       public static Deck AscendingSort(Deck deckToSort)
       {
          /*
-          * This is a tad bit cheecky, but for the current
+          * This is a tad bit cheeky, but for the current
           * implementation and requirements a sorted Deck will 
           * be identical to a freshly constructed deck, minus
           * any cards that have been removed.
