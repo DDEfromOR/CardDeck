@@ -5,8 +5,8 @@ using NUnit.Framework;
 namespace CardDeck2010
 {
    [TestFixture]
-    class DeckTests
-    {
+   class DeckTests
+   {
       [Test]
       public void DeckConstructorTest()
       {
@@ -46,7 +46,7 @@ namespace CardDeck2010
          /*
           * Confirms cards can be found in a fresh deck and
           * properly cannot be found after being removed. 
-          */ 
+          */
          Deck myDeck = new Deck();
          Card twoOfHearts = new Card(2, 'H');
          Card threeOfHearts = new Card(3, 'H');
@@ -71,7 +71,7 @@ namespace CardDeck2010
           * Confirms sorting a deck with missing cards doesn't
           * shuffle the missing cards back into the deck, or add blank
           * cards in the places they would have occupied. 
-          */ 
+          */
          Deck myDeck1 = new Deck();
          Deck myDeck2 = new Deck();
          Assert.AreEqual(myDeck1.ToString().Length, myDeck2.ToString().Length);
@@ -150,5 +150,5 @@ namespace CardDeck2010
          myDeck1 = Deck.AscendingSort(myDeck1);
          Assert.AreEqual(myDeck1.ToString(), myDeck2.ToString());
       }
-    }
+   }
 }

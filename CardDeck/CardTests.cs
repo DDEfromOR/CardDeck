@@ -11,7 +11,7 @@ namespace CardDeck2010
       {
          /*
           * Tests happy path for creating a new card.
-          */ 
+          */
          Card testCard = new Card(1, 'H');
          Assert.AreEqual(testCard.GetSuit(), 'H');
          Assert.AreEqual(testCard.GetValue(), 1);
@@ -22,7 +22,7 @@ namespace CardDeck2010
       {
          /*
           * Tests the card compare function against manually created cards.
-          */ 
+          */
          Card twoOfHearts = new Card(2, 'H');
          Card anotherTwoOfHearts = new Card(2, 'H');
          Card threeOfHearts = new Card(3, 'H');
@@ -39,7 +39,7 @@ namespace CardDeck2010
          /*
           * Tests the grumpy path related to an illegal suit being used
           * when creating a new card.
-          */ 
+          */
          try
          {
             Card testCard = new Card(1, 'A');
@@ -60,7 +60,7 @@ namespace CardDeck2010
           */
          try
          {
-           Card testCard = new Card(15, 'H');
+            Card testCard = new Card(15, 'H');
          }
          catch (Exception)
          {
@@ -75,7 +75,7 @@ namespace CardDeck2010
          /*
           * Simple test to make sure GetSuit() returns
           * the expected suit from a newly created card.
-          */ 
+          */
          Card testCard = new Card(5, 'D');
          Assert.AreEqual('D', testCard.GetSuit());
       }
@@ -86,7 +86,7 @@ namespace CardDeck2010
          /*
           * Simple test to make sure GetValue() returns
           * the expected value from a newly created card.
-          */ 
+          */
          Card testCard = new Card(5, 'D');
          Assert.AreEqual(5, testCard.GetValue());
       }
