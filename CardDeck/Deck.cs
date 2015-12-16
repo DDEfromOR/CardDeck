@@ -63,20 +63,6 @@ namespace CardDeck2010
           }
        }
 
-       /// <summary>
-        /// Removes an existing Card from the Deck. This has no current use but seems like
-        /// it would be a necessary function if the deck were to be used to deal cards out of.
-        /// </summary>
-        /// <param name="cardToRemove">A Card to search the Deck for and remove if found.</param>
-        /// <returns>True if found and removed, otherwise False.</returns>
-        private bool RemoveCard(Card cardToRemove)
-        {
-           if (!cards.Contains(cardToRemove)) return false;
-           
-           cards.Remove(cardToRemove);
-           return true;
-        }
-
         /// <summary>
         /// Overload to sort the current deck. Passes 'this' to AscendingSort(Deck).
         /// </summary>
