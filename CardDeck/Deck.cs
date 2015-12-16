@@ -83,7 +83,7 @@ namespace CardDeck2010
         /// <returns>The results of AscendingSort(this).</returns>
         public void AscendingSort()
         {
-            cards = AscendingSort(this).cards;
+            AscendingSort(this);
         }
 
         /// <summary>
@@ -96,7 +96,8 @@ namespace CardDeck2010
            /*
             * This is a tad bit cheecky, but for the current
             * implementation and requirements a sorted Deck will 
-            * be identical to a freshly constructed deck.
+            * be identical to a freshly constructed deck, minus
+            * any cards that have been removed.
             * 
             * This may need a re-work to support classes derived
             * from this Deck class, but it would be difficult to 
@@ -104,7 +105,16 @@ namespace CardDeck2010
             * possible derivations without knowledge of them
             * beforehand.
           */ 
-            return new Deck();
+            Deck freshDeck = new Deck();
+
+            foreach (Card myCard in freshDeck.cards)
+            {
+                if (!deckToSort.cards.Contains(myCard))
+                {
+                    freshDeck.RemoveCard(myCard);
+                }
+            }
+            return freshDeck;
         }
 
         /// <summary>
